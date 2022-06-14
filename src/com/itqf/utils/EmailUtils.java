@@ -18,7 +18,7 @@ public class EmailUtils {
         //qq账户
         String myAccount = "3504164084@qq.com";
         //授权码
-        String myAuthorizationCode = "pxxebkqkejiqcjei";
+        String myAuthorizationCode = "zamtebxoejvmchjh";
         //发件人邮箱的smtp服务器地址。也可以写smtp.163.com
         String smtpHost = "smtp.qq.com";
         //
