@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: deqi5
-  Date: 2022/4/21
-  Time: 13:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -18,22 +11,42 @@
         function showmodal(aid) {
             window.location.href = "address?method=showModal&aid=" + aid;
         }
-
         function deleteAddress(aid) {
             if (confirm("是否删除该收获地址？")) {
                 window.location.href = "address?method=deleteAddress&aid=" + aid;
             }
         }
-
         function setAddressToDefault(aid, uid) {
             if (confirm("是否设置为默认地址")) {
                 window.location.href = "address?method=setAddressToDefault&aid=" + aid + "&uid=" + uid;
             }
         }
+        function isEmpty() {
+            var aname = $("#aname").val();
+            var aphone = $("#aphone").val();
+            var adetail = $("#adetail").val();
+            if(aname==""){
+                alert("请填写收获人信息");
+                return;
+            }else {
+                if(aphone==""){
+                    alert("请填写手机号");
+                    return;
+                }else {
+                    if(adetail==""){
+                        alert("请填写收获地址");
+                        return;
+                    }else {
+                        alert("确定提交吗")
+                        $("#addBtn").attr("type","submit");
+                    }
+                }
+            }
+        }
     </script>
 </head>
 <body>
-<jsp:include page="site_info.jsp"/>
+<%--<jsp:include page="header.jsp"/>--%>
 <div class="nav nav-divider">
     <div class="container">
         <div class="row">
@@ -49,7 +62,7 @@
                 <c:forEach items="${addressList}" var="g" varStatus="i">
                     <tr>
                         <th>${i.count}</th>
-                        <th>${g.aname}</th>d
+                        <th>${g.aname}</th>
                         <th>${g.aphone}</th>
                         <th>${g.adetail}</th>
                         <th>
@@ -72,25 +85,24 @@
                 <div class="form-control">
                     <label class="col-xs-2 control-label">收货人</label>
                     <div class="col-xs-10">
-                        <input type="text" name="aname">
+                        <input type="text" name="aname" id="aname">
                     </div>
                 </div>
                 <div class="form-control">
                     <label class="col-xs-2 control-label">手机号码</label>
                     <div class="col-xs-10">
-                        <input type="text" name="aphone">
+                        <input type="text" name="aphone" id="aphone">
                     </div>
                 </div>
                 <div class="form-control">
                     <label class="col-xs-2 control-label">收获地址</label>
                     <div class="col-xs-10">
-                        <input type="text" name="adetail">
+                        <input type="text" name="adetail" id="adetail">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" type="submit">添加</button>
+                    <button class="btn btn-danger" id="addBtn" onclick="isEmpty();">添加</button>
                 </div>
-
             </form>
         </div>
     </div>
