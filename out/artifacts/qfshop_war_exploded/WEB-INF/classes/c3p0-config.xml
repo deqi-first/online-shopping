@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+   <default-config>
+     <property name="jdbcUrl">jdbc:mysql://localhost:3308/shopping?useUnicode=true&amp;characterEncoding=UTF-8</property>
+     <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+     <property name="user">root</property>
+     <property name="password">123456</property>
+<!--       初始化大小-->
+     <property name="initialPoolSize">3</property>
+<!--  最多有多少个连接-->
+     <property name="maxPoolSize">6</property>
+<!--       最少几个连接-->
+       <property name="mPoolSize">2</property>
+<!--   最大空闲数-->
+     <property name="maxIdleTime">1000</property>
+<!--    每次最多可以执行多少个批处理语句-->
+       <property name="maxStatements">50</property>
+   </default-config>
+  <named-config name="mySource">
+    <property name="user">root</property>
+    <property name="password">123456</property>
+    <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+    <property name="jdbcUrl">jdbc:mysql://localhost:3308/shopping?useUnicode=true&amp;characterEncoding=UTF-8</property>
+    <property name="initialPoolSize">10</property>
+    <property name="maxIdleTime">30</property>
+    <property name="maxPoolSize">100</property>
+    <property name="minPoolSize">10</property>
+  </named-config>
+
+</c3p0-config>
