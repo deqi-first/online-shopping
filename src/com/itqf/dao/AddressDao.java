@@ -18,5 +18,6 @@ public interface AddressDao {
     void setAddressToDefault(int aid, int uid);
 
     void setOuterAddressNotDefault(int aid, int uid);
+    Address selectDefaultAddress(int uid);
 
 }

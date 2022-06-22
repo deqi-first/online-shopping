@@ -55,4 +55,9 @@ public class CartServiceImpl implements CartService {
         cartDao.deleteCartByUid(uid);
     }
 
+    @Override
+    public Cart findCartByCid(int cid) {
+        return  cartDao.selectCartByCid(cid);
+    }
+
 }

@@ -12,4 +12,5 @@ public interface CartService {
     public void deleteCartByCid(int cid);
     public void updateCartByCid(int cid,int cnum,String pprice);
     public void deleteCartByUid(int uid);
+    public Cart findCartByCid(int cid);
 }

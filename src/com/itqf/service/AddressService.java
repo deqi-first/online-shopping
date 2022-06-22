@@ -18,4 +18,6 @@ public interface AddressService {
 
     void setAddressToDefault(int aid, int uid);
 
+    Address findDefaultAddressByUid(int uid);
+
 }

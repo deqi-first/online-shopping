@@ -46,5 +46,10 @@ public class AddressServiceImpl implements AddressService {
         addressDao.setOuterAddressNotDefault(aid,uid);
     }
 
+    @Override
+    public Address findDefaultAddressByUid(int uid) {
+        return addressDao.selectDefaultAddress(uid);
+    }
+
 
 }

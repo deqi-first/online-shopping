@@ -26,4 +26,7 @@ public interface CartDao {
 
     //修改商品
     public void updateCartByCid(Double count, int cnum, int cid);
+
+    //查找商品
+    public Cart selectCartByCid(int cid);
 }

@@ -93,5 +93,17 @@ public class AddressDaoImpl implements AddressDao {
         }
     }
 
+    @Override
+    public Address selectDefaultAddress(int uid) {
+        Address address = null;
+        String sql = "select a_id as aid,u_id as uid,a_name as aname,a_phone as aphone,a_detail as adetail,a_state as astate from address where a_id =? and a_state='1'";
+        try {
+            address = queryRunner.query(sql, new BeanHandler<>(Address.class), uid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return address;
+    }
+
 
 }

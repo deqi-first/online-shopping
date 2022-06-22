@@ -1,5 +1,7 @@
 package com.itqf.controller;
 
+import com.itqf.entity.Address;
+import com.itqf.entity.Cart;
 import com.itqf.entity.Orders;
 import com.itqf.service.AddressService;
 import com.itqf.service.CartService;
@@ -23,12 +25,18 @@ public class OrderController extends BaseServlet{
         int cid = Integer.parseInt(req.getParameter("cid"));
         int uid = Integer.parseInt(req.getParameter("uid"));
         Orders orders = new Orders();
-//        orders.setAid(aid);
+        CartService cartService = new CartServiceImpl();
+        Cart cartByCid = cartService.findCartByCid(cid);
+        orders.setOcount(cartByCid.getCcount());
         orders.setUid(uid);
-//        orders.setOcount(ccount);
+        AddressService addressService = new AddressServiceImpl();
+        Address address = addressService.findDefaultAddressByUid(uid);
+        orders.setAid(address.getAid());
         Date date=new Date();
         orders.setOtime(date);
         orders.setOstate(0);
+        req.setAttribute("MyOrder",orders);
+
         return Constants.FORWARD+Constants.FLAG+"/createOrder.jsp";
     }
 }

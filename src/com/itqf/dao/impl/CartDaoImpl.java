@@ -132,4 +132,16 @@ public class CartDaoImpl implements CartDao {
         }
     }
 
+    @Override
+    public Cart selectCartByCid(int cid) {
+        Cart cart = null;
+        String sql="select c_id as cid,p_id as pid,u_id as uid,c_count as ccount,c_num as cnum from cart where c_id = ?";
+        try {
+            cart = queryRunner.query(sql,new BeanHandler<Cart>(Cart.class),cid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cart;
+    }
+
 }
