@@ -11,41 +11,38 @@
         function showmodal(aid) {
             window.location.href = "address?method=showModal&aid=" + aid;
         }
+
         function deleteAddress(aid) {
             if (confirm("是否删除该收获地址？")) {
                 window.location.href = "address?method=deleteAddress&aid=" + aid;
             }
         }
+
         function setAddressToDefault(aid, uid) {
             if (confirm("是否设置为默认地址")) {
                 window.location.href = "address?method=setAddressToDefault&aid=" + aid + "&uid=" + uid;
             }
-        }
-        function isEmpty() {
-            var aname = $("#aname").val();
-            var aphone = $("#aphone").val();
-            var adetail = $("#adetail").val();
-            if(aname==""){
-                alert("请填写收获人信息");
-                return;
-            }else {
-                if(aphone==""){
-                    alert("请填写手机号");
-                    return;
-                }else {
-                    if(adetail==""){
-                        alert("请填写收获地址");
-                        return;
-                    }else {
-                        $("#addBtn").attr("type","submit");
+        };
+        $(function () {
+            $("form").submit(
+                function () {
+                    if ($.trim($(":text:eq(0)").val()) == "" || $.trim($(":text:eq(1)").val()) == "" || $.trim($(":text:eq(2)").val()) == "") {
+                        alert("请填写完整信息！")
+                        return false;
                     }
                 }
-            }
-        }
+            )
+        });
+
+
     </script>
 </head>
 <body>
 <%--<jsp:include page="header.jsp"/>--%>
+<ol class="breadcrumb">
+    <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+    <li><a href="${pageContext.request.contextPath}/cart?method=show">购物车</a></li>
+</ol>
 <div class="nav nav-divider">
     <div class="container">
         <div class="row">
@@ -100,9 +97,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" id="addBtn" onclick="isEmpty();">添加</button>
-                </div>
+                    <input type="submit" class="btn btn-danger" value="提交">
 
+                </div>
             </form>
         </div>
     </div>
