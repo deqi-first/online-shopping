@@ -24,7 +24,7 @@ import java.util.Date;
 
 @WebServlet(name = "OrderController",value = "/order")
 public class OrderController extends BaseServlet{
-    public String showOrder(HttpServletRequest req,HttpServletRequest resp){
+    public String showOrder(HttpServletRequest req, HttpServletResponse resp){
         int cid = Integer.parseInt(req.getParameter("cid"));
         int uid = Integer.parseInt(req.getParameter("uid"));
         Orders orders = new Orders();
@@ -36,6 +36,7 @@ public class OrderController extends BaseServlet{
         ProductService productService = new ProductServiceImpl();
         Product product = productService.findGoodDetailByPid(pid);
         req.setAttribute("MyOrderProduct",product);
+        cartByCid.setProduct(product);
         orders.setOcount(cartByCid.getCcount());
         orders.setUid(uid);
         //查找默认收获地址
