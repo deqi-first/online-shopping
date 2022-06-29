@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ProductService {
     public PageBean<Product> goodsList(int pageIndex, int pageSize, int type);
-    public Product goodDetail(int pid);
+    public Product findGoodDetailByPid(int pid);
 }

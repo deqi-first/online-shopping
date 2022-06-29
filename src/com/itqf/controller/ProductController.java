@@ -37,7 +37,7 @@ public class ProductController extends BaseServlet {
     public String goodDetail(HttpServletRequest req, HttpServletResponse resp){
        int pid =Integer.parseInt(req.getParameter("pid"));
        ProductService productService = new ProductServiceImpl();
-       Product product = productService.goodDetail(pid);
+       Product product = productService.findGoodDetailByPid(pid);
         req.setAttribute("product",product);
         return Constants.FORWARD+Constants.FLAG+"/goodDetail.jsp";
     }

@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product goodDetail(int pid) {
+    public Product findGoodDetailByPid(int pid) {
         Product product = null;
         ProductDao productDao = new ProductDaoImpl();
         product = productDao.select(pid);

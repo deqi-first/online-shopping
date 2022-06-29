@@ -41,7 +41,7 @@
 
         function createOrder(cid, uid) {
             if (confirm("是否要生成订单？")) {
-                window.location.href = "order?method=createOrder&cid=" + cid + "&uid=" + uid;
+                window.location.href = "order?method=showOrder&cid=" + cid + "&uid=" + uid;
             }
         }
     </script>

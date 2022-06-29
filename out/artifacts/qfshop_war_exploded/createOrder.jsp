@@ -23,19 +23,19 @@
                    <form action="${pageContext.request.contextPath}/order?method=addOrder" class="form-horizontal">
                        <tr>
                            <th>商品名称：</th>
-                           <th><input type="text" value="Huawei" readonly="readonly"></th>
+                           <th><input type="text" value="${MyOrderProduct.pname}" readonly="readonly"></th>
                        </tr>
                        <tr>
                            <th>商品总价：</th>
-                           <th><input type="text" value="Huawei" readonly="readonly"></th>
+                           <th><input type="text" value="${MyOrderProduct.pprice}" readonly="readonly"></th>
                        </tr>
                        <tr>
                            <th>订单创建时间：</th>
-                           <th><input type="text" value="Huawei" readonly="readonly"></th>
+                           <th><input type="text" value="${MyOrder.otime}" readonly="readonly"></th>
                        </tr>
                        <tr>
                            <th>收获地址</th>
-                           <th><input type="text" value="Huawei" readonly="readonly"></th>
+                           <th><input type="text" value="MyOrderAddress." readonly="readonly"></th>
                        </tr>
                        <input type="submit" class="btn btn-danger right" >提交订单</button>
                    </form>
