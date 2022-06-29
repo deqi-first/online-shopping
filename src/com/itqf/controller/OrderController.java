@@ -6,9 +6,11 @@ import com.itqf.entity.Orders;
 import com.itqf.entity.Product;
 import com.itqf.service.AddressService;
 import com.itqf.service.CartService;
+import com.itqf.service.OrderService;
 import com.itqf.service.ProductService;
 import com.itqf.service.impl.AddressServiceImpl;
 import com.itqf.service.impl.CartServiceImpl;
+import com.itqf.service.impl.OrderServiceImpl;
 import com.itqf.service.impl.ProductServiceImpl;
 import com.itqf.utils.Constants;
 
@@ -21,6 +23,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(name = "OrderController",value = "/order")
 public class OrderController extends BaseServlet{
@@ -49,10 +52,15 @@ public class OrderController extends BaseServlet{
         orders.setOstate(0);
         //把生成的订单放到request作用域中
         req.setAttribute("MyOrder",orders);
+        OrderService orderService = new OrderServiceImpl();
+        orderService.addOrder(orders);
         return Constants.FORWARD+Constants.FLAG+"/createOrder.jsp";
     }
-    public String createOrder(HttpServletRequest req,HttpServletResponse resp){
-
-        return Constants.FORWARD+Constants.FLAG+"/createOrder.jsp";
+    public String showOrdersList(HttpServletRequest req,HttpServletResponse resp){
+        int uid = Integer.parseInt(req.getParameter("uid"));
+        OrderService orderService = new OrderServiceImpl();
+        List<Orders> orderListByUid = orderService.findOrderListByUid(uid);
+        req.setAttribute("MyOrdersList",orderListByUid);
+        return Constants.FORWARD+Constants.FLAG+"/ordersList.jsp";
     }
 }

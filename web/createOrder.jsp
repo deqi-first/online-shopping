@@ -20,7 +20,7 @@
            </div>
            <div class="panel-body">
                <table class="table table-bordered table-condensed table-striped table-hover table-responsive">
-                   <form action="${pageContext.request.contextPath}/order?method=addOrder" class="form-horizontal">
+                   <form action="${pageContext.request.contextPath}/order?method=showOrdersList&uid=${MyOrder.uid}" class="form-horizontal">
                        <tr>
                            <th>商品名称：</th>
                            <th><input type="text" value="${MyOrderProduct.pname}" readonly="readonly"></th>
