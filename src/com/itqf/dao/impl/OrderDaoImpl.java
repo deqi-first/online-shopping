@@ -37,7 +37,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Orders> selectOrderListByUid(int uid) {
-        String sql = "select o_id as oid,a_id as aid,u_id as  uid,o_count as ocount,o_time as otime,o_state as ostate from orders where u_id = ?";
+        String sql = "select o_id as oid,a_id as aid,u_id as uid,o_count as ocount,o_time as otime,o_state as ostate from orders where u_id = ?";
         List<Orders> ordersList = null;
         try {
             ordersList = queryRunner.query(sql, new BeanListHandler<>(Orders.class), uid);

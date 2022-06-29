@@ -22,8 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.UUID;
 
 @WebServlet(name = "OrderController",value = "/order")
 public class OrderController extends BaseServlet{
@@ -48,10 +51,16 @@ public class OrderController extends BaseServlet{
         req.setAttribute("MyOrderAddress",address);
         orders.setAid(address.getAid());
         Date date=new Date();
-        orders.setOtime(date);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String dateString = sdf.format(new Date());
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        ZonedDateTime zdt = cal.toZonedDateTime();
+        orders.setOtime(zdt.toLocalDateTime());
         orders.setOstate(0);
         //把生成的订单放到request作用域中
         req.setAttribute("MyOrder",orders);
+        orders.setOid(UUID.randomUUID().toString().replaceAll("-",""));
         OrderService orderService = new OrderServiceImpl();
         orderService.addOrder(orders);
         return Constants.FORWARD+Constants.FLAG+"/createOrder.jsp";
@@ -59,7 +68,12 @@ public class OrderController extends BaseServlet{
     public String showOrdersList(HttpServletRequest req,HttpServletResponse resp){
         int uid = Integer.parseInt(req.getParameter("uid"));
         OrderService orderService = new OrderServiceImpl();
+        AddressService addressService = new AddressServiceImpl();
         List<Orders> orderListByUid = orderService.findOrderListByUid(uid);
+        for (Orders orders : orderListByUid) {
+            Address addressByAid = addressService.findAddressByAid(orders.getAid());
+            orders.setAddress(addressByAid);
+        }
         req.setAttribute("MyOrdersList",orderListByUid);
         return Constants.FORWARD+Constants.FLAG+"/ordersList.jsp";
     }

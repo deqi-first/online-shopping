@@ -2,6 +2,8 @@ package com.itqf.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Orders implements Serializable {
@@ -11,8 +13,17 @@ public class Orders implements Serializable {
     private int aid;
     private int uid;
     private BigDecimal ocount;
-    private Date otime;
+    private Address address;
+    private LocalDateTime otime;
     private int ostate;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public String getOid() {
         return oid;
@@ -46,11 +57,11 @@ public class Orders implements Serializable {
         this.ocount = ocount;
     }
 
-    public Date getOtime() {
+    public LocalDateTime getOtime() {
         return otime;
     }
 
-    public void setOtime(Date otime) {
+    public void setOtime(LocalDateTime otime) {
         this.otime = otime;
     }
 
